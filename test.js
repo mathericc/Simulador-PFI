@@ -4,5 +4,9 @@ void setup ()
   background(255);
 }
 
-fill(0);
-ellipse(200,200,200,200);
+void draw ()
+{
+  fill(0);
+  ellipse(200,200,200,200);
+}
+
