@@ -9,6 +9,7 @@ void setup ()
 
 void draw ()
 {
+  background(100, 100, 100);
   fill(0);
   ellipse(x,y,200,200);
   x += 1;
