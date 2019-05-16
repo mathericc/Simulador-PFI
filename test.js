@@ -1,5 +1,4 @@
-var x = 200;
-var y = 200;
+var ball = new object(200,200,50,50); 
 void setup ()
 {
   size(1280,720);
@@ -11,11 +10,11 @@ void draw ()
 {
   background(100, 100, 100);
   fill(0);
-  ellipse(x,y,200,200);
-  x += 1;
-  if (x > 1280)
+  ellipse(ball.x, ball.y, ball.w, ball.h);
+  ball.x += 1;
+  if (ball.x > 1280)
   {
-    x = 0;
+    ball.x = 0;
   }
 }
 
