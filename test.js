@@ -1,4 +1,4 @@
-var ball = new object(200,200,50,50); 
+var ball = new Object(200,200,50,50); 
 void setup ()
 {
   size(1280,720);
