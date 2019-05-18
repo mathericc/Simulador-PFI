@@ -1,4 +1,4 @@
-funtion Object(x,y,w,h)
+var Object = function(x,y,w,h)
 {
   this.x = x;
   this.y = y;
