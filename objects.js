@@ -1,7 +1,6 @@
 var Unphysical = function(x,y,w,h)
 {
-  this.x = x;
-  this.y = y;
+  this.position = new PVector(x,y);
   this.w = w;
   this.h = h;
 }
@@ -9,8 +8,19 @@ var Unphysical = function(x,y,w,h)
 var Physical = function(x, y, w, h)
 {
   Unphysical.call(this,x,y,w,h);
-  this.positon = new PVector(0,0);
   this.velocity = new PVector(0,0);
   this.acceleration = new PVector(0,0);
 
+}
+
+Physical.prototype.update = function()
+{
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+}
+
+
+Physical.prototype.addForce = function()
+{
+    this.acceleration.add(1, 1);
 }
