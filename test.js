@@ -8,15 +8,16 @@ void setup ()
 
  ball2.acceleration = new PVector(1,0);
 
+ var wind = new PVector(0{,}01, 0);
 
 void draw ()
 {
   background(100, 100, 100);
   fill(0);
-
+ m.applyForce(wind);
 
   ball2.update();
-  
+
   ellipse(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
   if (ball2.position.x > 1280)
   {

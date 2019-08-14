@@ -10,17 +10,22 @@ var Physical = function(x, y, w, h)
   Unphysical.call(this,x,y,w,h);
   this.velocity = new PVector(0,0);
   this.acceleration = new PVector(0,0);
+  this.mass = 1;
 
 }
+
+
 
 Physical.prototype.update = function()
 {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
+    this.acceleration.mult(0);
 }
 
 
-Physical.prototype.addForce = function()
+Physical.prototype.addForce = function(force)
 {
-    this.acceleration.add(1, 1);
+    f = PVector.div(force, this.mass);
+    this.acceleration.add(f);
 }
