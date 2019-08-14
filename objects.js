@@ -26,6 +26,6 @@ Physical.prototype.update = function()
 
 Physical.prototype.addForce = function(force)
 {
-    f = PVector.div(force, this.mass);
+    var f = PVector.div(force, this.mass);
     this.acceleration.add(f);
 }
