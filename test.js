@@ -27,6 +27,6 @@ void draw ()
   }
    if (ball2.position.y > 720)
   {
-    ball2.velocity.y = *-1;
+    ball2.velocity.y *= -1;
   }
 }
