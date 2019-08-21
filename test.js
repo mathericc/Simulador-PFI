@@ -9,12 +9,14 @@ void setup ()
  ball2.acceleration = new PVector(1,0);
 
  var wind = new PVector(0.01, 0);
+ var gravity = new PVector(0, 0.1);
 
 void draw ()
 {
   background(100, 100, 100);
   fill(0);
- ball2.addForce(wind);
+  ball2.addForce(wind);
+  ball2.addForce(gravity);
 
   ball2.update();
 
