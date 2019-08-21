@@ -23,10 +23,10 @@ void draw ()
   ellipse(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
   if (ball2.position.x > 1280)
   {
-    ball2.position.x = 0;
+    ball2.velocity.x *= -1;
   }
    if (ball2.position.y > 720)
   {
-    ball2.position.y = 0;
+    ball2.velocity.y = *-1;
   }
 }
