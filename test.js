@@ -25,4 +25,8 @@ void draw ()
   {
     ball2.position.x = 0;
   }
+   if (ball2.position.y > 720)
+  {
+    ball2.position.x = 0;
+  }
 }
