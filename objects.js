@@ -15,7 +15,6 @@ var Physical = function(x, y, w, h)
 }
 
 
-
 Physical.prototype.update = function()
 {
     this.velocity.add(this.acceleration);
