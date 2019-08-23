@@ -15,7 +15,7 @@ void draw ()
 {
   background(100, 100, 100);
   fill(0);
-  ball2.addForce(wind);
+
   ball2.addForce(gravity);
 
   ball2.update();
