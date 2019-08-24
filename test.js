@@ -10,18 +10,20 @@ void setup ()
 
 // var wind = new PVector(0.01, 0);
  var gravity = new PVector(0, 0.1);
- var empuxo = new PVector(0, 1);
+ var empuxo = new PVector(0, -1);
 
 void draw ()
 {
   background(100, 100, 100);
-  fill(0);
-
+  fill(0,0,255);
+  rect(0, 450, 1280, 720);
   ball2.addForce(gravity);
-  ball2.addForce(empuxo);
 
+  if (ball2.position.y >= 450){
+      ball2.addForce(empuxo);
+    }
   ball2.update();
-
+  fill(255,255,255);
   ellipse(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
   if (ball2.position.x > 1280)
   {
