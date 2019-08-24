@@ -18,6 +18,7 @@ void draw ()
   fill(0);
 
   ball2.addForce(gravity);
+  ball2.addForce(empuxo);
 
   ball2.update();
 
