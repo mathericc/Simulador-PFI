@@ -8,8 +8,9 @@ void setup ()
 
  ball2.acceleration = new PVector(1,0);
 
- var wind = new PVector(0.01, 0);
+// var wind = new PVector(0.01, 0);
  var gravity = new PVector(0, 0.1);
+ var empuxo = new PVector(0, -0.1);
 
 void draw ()
 {
