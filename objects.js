@@ -29,6 +29,8 @@ Physical.prototype.addForce = function(force)
     this.acceleration.add(f);
 }
 
+
+
 var Liquid = function(x=200, y=200, w=10, h=10, mass=1, density =1)
 {
     Physical.call(this,x,y,w,h, mass, density);
