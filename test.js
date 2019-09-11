@@ -53,7 +53,7 @@ void draw ()
 
   ball2.update();
   fill(255,255,255);
-  ellipse(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
+  rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
   ball2.drawVectors();
   if (ball2.position.x > 1280)
   {
