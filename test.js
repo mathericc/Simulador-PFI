@@ -61,7 +61,7 @@ void draw ()
  rect(0,250 ,1280,720);
  fill(255,255,255);
   rectMode(CENTER);  
-  rect(0, ball2.position.y, ball2.w, ball2.h);
+  rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
   ball2.drawVectors();
   if (ball2.position.x > 1280)
   {
