@@ -59,7 +59,7 @@ void draw ()
   ball2.update();
  fill(0,255,0);
  rectMode(CORNER);
- rect(0,250 ,1280,745);
+ rect(0,275,1280,720);
  fill(255,255,255);
   rectMode(CENTER);  
   rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
