@@ -58,6 +58,7 @@ void draw ()
 
   ball2.update();
  fill(0,255,0);
+ rectMode(CORNER);
  rect(0,250 ,1280,720);
  fill(255,255,255);
   rectMode(CENTER);  
