@@ -29,6 +29,11 @@ Physical.prototype.drawVectors = function()
     fill(255,0,0);
 
     text('P',  this.position.x + gravity.x * 500 +3 , this.position.y + gravity.y *500 -3);
+ 
+    line(this.position.x, this.position.y, this.position.x + gravity.x * 500, this.position.y - gravity.y *500);
+    fill(255,0,0);
+
+    text('N',  this.position.x + gravity.x * 500 +3 , this.position.y - gravity.y *500 -3);
 }
 
 var ball = new Unphysical(0,200,50,50);
@@ -48,11 +53,13 @@ void draw ()
   background(100, 100, 100);
   stroke(0,0,0);
 
-  ball2.addForce(gravity);
+ 
   ball2.addForce(wind);
 
   ball2.update();
-  fill(255,255,255);
+ fill(0,0,0);
+ rect(0,250,1280,720);
+ fill(255,255,255);
   rectMode(CENTER);  
   rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
   ball2.drawVectors();
