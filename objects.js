@@ -1,3 +1,5 @@
+// Esta é a classe de objetos que os quais são exibidos mas a física não se aplica
+// Eles somente tem um vetor posição e atributos de comprimento e altura
 var Unphysical = function(x,y,w,h)
 {
   this.position = new PVector(x,y);
@@ -5,6 +7,7 @@ var Unphysical = function(x,y,w,h)
   this.h = h;
 }
 
+// Esta é classe de objetos aos quais a física se aplicará. Ela herda de Unphysical. Porém também contém vetores de velocidade e aceleração
 var Physical = function(x=200, y=200, w=10, h=10, mass=1, density =1)
 {
   Unphysical.call(this,x,y,w,h);
@@ -27,13 +30,6 @@ Physical.prototype.addForce = function(force)
 {
     var f = PVector.div(force, this.mass);
     this.acceleration.add(f);
-}
-
-
-
-var Liquid = function(x=200, y=200, w=10, h=10, mass=1, density =1)
-{
-    Physical.call(this,x,y,w,h, mass, density);
 }
 
 // Esse é o slider
