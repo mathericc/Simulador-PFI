@@ -38,6 +38,42 @@ Physical.prototype.drawVectors = function()
 
 var ball = new Unphysical(0,200,50,50);
 var ball2 = new Physical(200,250,50,50);
+
+//Métodos do slider
+Slider.prototype.draw = function()
+{
+  rectMode(CENTER);
+  fill(255,255,255);
+  rect(this.position.x,this.position.y,this.w,this.h);
+  fill(0,0,255);
+  ellipse(this.position.x+this.value,this.position.y,25,25);
+}
+var over = false;
+var locked = false;
+Slider.prototype.update = function()
+{
+  eval((this.variavel) + "=" + (this.value));
+  if (
+      (mouseX < this.position.x+this.value)+25 && mouseX > (this.position.x+this.value)-25 &&
+      (mouseX < this.position.y)+25 && mouseX > (this.position.y)-25
+      ){
+          over = true;
+      }
+    else{
+        over = false;
+    }
+    if (mousePressed == true && over == true){
+        if (mouseX < this.position.x + this.w/2 && mouseX > this.position.x - this.w/2){
+            this.value = mouseX-this.position.x;
+        }
+  }
+  
+}
+
+
+var slider = new Slider(200,300,"ball2.velocity.x",400,200,100,5);
+
+
 void setup ()
 {
   size(1280,720);
@@ -52,6 +88,9 @@ void draw ()
 {
   background(100, 100, 100);
   stroke(0,0,0);
+  text(slider.value,100,200,200,200);
+  slider.update();
+  slider.draw();
 
  
   ball2.addForce(wind);
