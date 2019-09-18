@@ -80,16 +80,12 @@ void setup ()
   background(100, 100, 100);
 }
 
-
-
-// var wind = new PVector(0.01, 0);
- var wind = new PVector(0.1, 0);
 void draw ()
 {
   background(100, 100, 100);
   stroke(0,0,0);
   text(slider.value,100,200,200,200);
- text(sliderm.value,100,300,200,200);
+  text(sliderm.value,100,300,200,200);
   slider.update();
   slider.draw();
   sliderm.update();
