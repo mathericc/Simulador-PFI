@@ -70,9 +70,9 @@ Slider.prototype.update = function()
   
 }
 
-
-var slider = new Slider(200,300,"ball2.velocity.x",400,200,100,5);
-
+var wind = new PVector(0, 0);
+var slider = new Slider(200,300,"wind.x",400,200,100,5);
+var sliderm = new Slider(400,300,"ball2.mass",400,200,100,5);
 
 void setup ()
 {
@@ -89,11 +89,14 @@ void draw ()
   background(100, 100, 100);
   stroke(0,0,0);
   text(slider.value,100,200,200,200);
+ text(sliderm.value,100,300,200,200);
   slider.update();
   slider.draw();
+  sliderm.update();
+  sliderm.draw();
 
  
-//   ball2.addForce(wind);
+ball2.addForce(wind);
 
   ball2.update();
  fill(0,255,0);
