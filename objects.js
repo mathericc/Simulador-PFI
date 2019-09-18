@@ -35,3 +35,13 @@ var Liquid = function(x=200, y=200, w=10, h=10, mass=1, density =1)
 {
     Physical.call(this,x,y,w,h, mass, density);
 }
+
+// Esse é o slider
+var Slider = function(min, max, variavel,x=200, y=200, w=10, h=10)
+{
+  this.min = min;
+  this.max = max;
+  this.variavel = variavel;
+  Unphysical.call(this,x,y,w,h);
+  this.value = 0;
+}
