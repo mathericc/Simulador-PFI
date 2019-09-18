@@ -93,7 +93,7 @@ void draw ()
   slider.draw();
 
  
-  ball2.addForce(wind);
+//   ball2.addForce(wind);
 
   ball2.update();
  fill(0,255,0);
