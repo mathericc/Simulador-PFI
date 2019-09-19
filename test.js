@@ -106,7 +106,11 @@ ball2.addForce(wind);
   ball2.drawVectors();
   if (ball2.position.x > 1280)
   {
-    ball2.velocity.x *= -1;
+    ball2.position.x = 0;
+  }
+   if (ball2.position.x < 0)
+  {
+    ball2.position.x = 1280;
   }
    if (ball2.position.y > 720)
   {
