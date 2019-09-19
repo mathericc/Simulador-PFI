@@ -95,7 +95,7 @@ void draw ()
 
  
 ball2.addForce(wind);
-ball2.addForce(gravity);
+//ball2.addForce(gravity);
  
   ball2.update();
  fill(0,255,0);
