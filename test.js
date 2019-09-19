@@ -64,7 +64,7 @@ Slider.prototype.update = function()
     }
     if (mousePressed == true && over == true){
         if (mouseX < this.position.x + this.w/2 && mouseX > this.position.x - this.w/2){
-            this.value = map(mouseX-this.position.x, this.position.x -this.w/2, this.positon.x+ this.w/2, this.min, this.max)   ;
+            this.value = map(mouseX-this.position.x, this.position.x -this.w/2, this.position.x+ this.w/2, this.min, this.max)   ;
         }
   }
   
