@@ -46,8 +46,8 @@ Slider.prototype.draw = function()
   fill(255,255,255);
   rect(this.position.x,this.position.y,this.w,this.h);
   fill(0,0,255);
-  var mapppedvalue = map(this.value, this.min, this.max, this.position.x -this.w/2, this.position.x+ this.w/2);
-  ellipse(this.position.x+this.value,this.position.y,25,25);
+  var mappedvalue = map(this.value, this.min, this.max, this.position.x -this.w/2, this.position.x+ this.w/2);
+  ellipse(this.position.x+mappedvalue,this.position.y,25,25);
 }
 var over = false;
 var locked = false;
@@ -72,7 +72,7 @@ Slider.prototype.update = function()
 }
 
 var wind = new PVector(0, 0);
-var slider = new Slider(0,50,"wind.x",400,200,100,5);
+var slider = new Slider(0,1,"wind.x",400,200,100,5);
 // var sliderm = new Slider(400,300,"ball2.mass",400,200,100,5);
 
 void setup ()
