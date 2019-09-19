@@ -46,7 +46,8 @@ Slider.prototype.draw = function()
   fill(255,255,255);
   rect(this.position.x,this.position.y,this.w,this.h);
   fill(0,0,255);
-  ellipse(this.position.x+mouseX-this.position.x,this.position.y,25,25);
+  var mapppedvalue = map(this.value, this.min, this.max, this.position.x -this.w/2, this.position.x+ this.w/2);
+  ellipse(this.position.x+,this.position.y,25,25);
 }
 var over = false;
 var locked = false;
@@ -64,7 +65,7 @@ Slider.prototype.update = function()
     }
     if (mousePressed == true && over == true){
         if (mouseX < this.position.x + this.w/2 && mouseX > this.position.x - this.w/2){
-            this.value = map(mouseX-this.position.x, this.position.x -this.w/2, this.position.x+ this.w/2, this.min, this.max)   ;
+            this.value = map(mouseX-this.position.x, this.position.x -this.w/2, this.position.x+ this.w/2, this.min, this.max);
         }
   }
   
