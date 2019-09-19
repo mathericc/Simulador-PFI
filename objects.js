@@ -41,6 +41,6 @@ var Slider = function(min, max, variavel,x=200, y=200, w=10, h=10)
   Unphysical.call(this,x,y,w,h);
   //valores iniciais do slider
   this.value = this.max/2;
-  this.real_value = map(mouseX-this.position.x,this.min, this.max,-this.w/2, this.w/2);
+  this.real_value = 0
   
 }
