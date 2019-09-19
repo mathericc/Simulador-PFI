@@ -47,7 +47,7 @@ Slider.prototype.draw = function()
   rect(this.position.x,this.position.y,this.w,this.h);
   fill(0,0,255);
   var mapppedvalue = map(this.value, this.min, this.max, this.position.x -this.w/2, this.position.x+ this.w/2);
-  ellipse(this.position.x+,this.position.y,25,25);
+  ellipse(this.position.x+this.value,this.position.y,25,25);
 }
 var over = false;
 var locked = false;
