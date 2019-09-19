@@ -87,7 +87,7 @@ void draw ()
   stroke(0,0,0);
   text(slider.value,100,200,200,200);
   text(slider.real_value,200,200,200,200);
-   text(sliderm.value,100,300,200,200);
+   text(sliderm.value,700,200,200,200);
   slider.update();
   slider.draw();
    sliderm.update();
