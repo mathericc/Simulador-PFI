@@ -73,7 +73,7 @@ Slider.prototype.update = function()
 
 var wind = new PVector(0, 0);
 var slider = new Slider(-1,1,"wind.x",400,200,100,5);
-var sliderm = new Slider(1,100,"ball2.mass",600,200,100,5);
+var sliderm = new Slider(-1,1,"gravity",600,200,100,5);
 
 void setup ()
 {
@@ -95,7 +95,8 @@ void draw ()
 
  
 ball2.addForce(wind);
-
+ball2.addForce(gravity);
+ 
   ball2.update();
  fill(0,255,0);
  rectMode(CORNER);
