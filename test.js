@@ -54,7 +54,7 @@ Slider.prototype.update = function()
 {
   eval((this.variavel) + "=" + (this.value));
   if (
-      (mouseX < this.position.x+this.value)+25 && mouseX > (this.position.x+this.value)-25 &&
+      (mouseX < this.position.x+this.real_value)+25 && mouseX > (this.position.x+this.real_value)-25 &&
       (mouseX < this.position.y)+25 && mouseX > (this.position.y)-25
       ){
           over = true;
