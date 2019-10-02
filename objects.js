@@ -15,7 +15,28 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
   this.acceleration = new PVector(0,0);
   this.mass = mass;
   this.density = density;
+  this.apllied_force = new PVector(0,0);
+  this.static_max_friction = 0.5;
+  this.dinamic_cfriction = 0.3;
+  this.friction = 0;
+}
 
+Physical.prototype.define_friction()
+{
+    if ( this.velocity.mag() != 0 ) //Dinâmico
+    {
+        this.friction =  PVector.normalize(PVector.mult(this.apllied.force, -1)) *  this.dinamic_cfriction;
+    }
+    else  //Estático
+    {
+        if ( this.apllied_force.mag() <= this.static_max_friction){
+            this.friction = PVector(this.apllied_force, -1);
+        }
+        else
+        {
+            this.friction = PVector.normalize(PVector.mult(this.apllied.force, -1)) *  this.dinamic_cfriction;
+        }
+    }
 }
 
 Physical.prototype.update = function()
@@ -42,5 +63,5 @@ var Slider = function(min, max, variavel,x=200, y=200, w=10, h=10)
   //valores iniciais do slider
   this.value = this.max/2;
   this.real_value = 0;
-  
+
 }

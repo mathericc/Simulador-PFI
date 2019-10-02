@@ -29,7 +29,7 @@ Physical.prototype.drawVectors = function()
     fill(255,0,0);
 
     text('P',  this.position.x + gravity.x * 500 +3 , this.position.y + gravity.y *500 -3);
- 
+
     line(this.position.x, this.position.y, this.position.x + gravity.x * 500, this.position.y - gravity.y *500);
     fill(255,0,0);
 
@@ -68,11 +68,14 @@ Slider.prototype.update = function()
             this.value = map(mouseX-this.position.x, -this.w/2, this.w/2, this.min, this.max); //Regra de três do slider
         }
   }
-  
+
 }
 
+
+
+
 var wind = new PVector(0, 0);
-var slider = new Slider(-1,1,"wind.x",400,200,100,5);
+var slider = new Slider(-1,1,"ball2.apllied_force.x",400,200,100,5);
  var sliderm = new Slider(1,1000,"ball2.mass",600,200,100,5);
 
 void setup ()
@@ -93,16 +96,17 @@ void draw ()
    sliderm.update();
    sliderm.draw();
 
- 
-ball2.addForce(wind);
+
+ball2.addForce(ball2.apllied_force);
+ball2.addForce(ball2.friction);
 //ball2.addForce(gravity);
- 
+
   ball2.update();
  fill(0,255,0);
  rectMode(CORNER);
  rect(0,275,1280,720);
  fill(255,255,255);
-  rectMode(CENTER);  
+  rectMode(CENTER);
   rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
   ball2.drawVectors();
   if (ball2.position.x > 1280)
