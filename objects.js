@@ -25,7 +25,7 @@ Physical.prototype.define_friction = function() //define atrito
 {
     if ( this.velocity.mag() != 0 ) //Dinâmico
     {
-        this.friction =  PVector.normalize(PVector.mult(this.apllied_force, -1)) *  this.dinamic_cfriction;
+        this.friction = PVector.mult(this.apllied_force, -1).setMag(this.dinamic_cfriction);
     }
     else  //Estático
     {
@@ -34,7 +34,7 @@ Physical.prototype.define_friction = function() //define atrito
         }
         else
         {
-            this.friction = PVector.normalize(PVector.mult(this.apllied.force, -1)) *  this.dinamic_cfriction;
+            this.friction = PVector.mult(this.apllied_force, -1).setMag(this.dinamic_cfriction);
         }
     }
 }
