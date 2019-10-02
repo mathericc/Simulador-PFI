@@ -21,7 +21,7 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
   this.friction = 0;
 }
 
-Physical.prototype.define_friction = function()
+Physical.prototype.define_friction = function() //define atrito
 {
     if ( this.velocity.mag() != 0 ) //Dinâmico
     {
