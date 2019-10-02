@@ -30,7 +30,7 @@ Physical.prototype.define_friction = function() //define atrito
     else  //Estático
     {
         if ( this.apllied_force.mag() <= this.static_max_friction){
-            this.friction = PVector(this.apllied_force, -1);
+            this.friction = PVector.mult(this.apllied_force, -1);
         }
         else
         {
