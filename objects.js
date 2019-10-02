@@ -16,7 +16,7 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
   this.mass = mass;
   this.density = density;
   this.apllied_force = new PVector(0,0);
-  this.static_max_friction = 0.5;
+  this.static_max_friction = 2;
   this.dinamic_cfriction = 0.3;
   this.friction = new PVector (0,0);
 }
