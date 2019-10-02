@@ -75,7 +75,7 @@ Slider.prototype.update = function()
 
 
 var wind = new PVector(0, 0);
-var slider = new Slider(-1,1,"ball2.apllied_force.x",400,200,100,5);
+var slider = new Slider(0,1,"ball2.apllied_force.x",400,200,100,5);
  var sliderm = new Slider(1,1000,"ball2.mass",600,200,100,5);
 
 void setup ()
