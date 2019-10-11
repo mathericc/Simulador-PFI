@@ -27,6 +27,8 @@ Physical.prototype.define_friction = function() //define atrito
 {
     if (this.apllied_force.mag() != 0)
     {
+
+        println('Foi');
         this.friction.x = 1;
         if (this.velocity.mag() != 0)
         {
@@ -51,6 +53,7 @@ Physical.prototype.define_friction = function() //define atrito
 
     }
     else {
+        println('Deu não');
         this.friction.setMag(0);
     }
 }
