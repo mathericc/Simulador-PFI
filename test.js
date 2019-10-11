@@ -83,8 +83,8 @@ void draw ()
 {
   background(100, 100, 100);
   stroke(0,0,0);
-  text(slider.real_value,200,200,200,200);
-  text(sliderm.real_value,700,200,200,200);
+  text(slider.value,200,200,200,200);
+  text(sliderm.value,700,200,200,200);
   slider.update();
   slider.draw();
   sliderm.update();
