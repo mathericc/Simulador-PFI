@@ -25,15 +25,10 @@ Physical.prototype.drawVectors = function()
 
     stroke(255,0,0);
 
-    line(this.position.x, this.position.y, this.position.x + gravity.x * 500, this.position.y + gravity.y *500);
+    line(this.position.x, this.position.y, this.position.x + this.friction.x * 500, this.position.y + this.friction.y *500);
     fill(255,0,0);
 
-    text('P',  this.position.x + gravity.x * 500 +3 , this.position.y + gravity.y *500 -3);
-
-    line(this.position.x, this.position.y, this.position.x + gravity.x * 500, this.position.y - gravity.y *500);
-    fill(255,0,0);
-
-    text('N',  this.position.x + gravity.x * 500 +3 , this.position.y - gravity.y *500 -3);
+    text('At',  this.position.x + this.friction.x * 500, this.position.y + this.friction.y *500);
 }
 
 var ball = new Unphysical(0,200,50,50);
@@ -76,7 +71,7 @@ Slider.prototype.update = function()
 
 var wind = new PVector(0, 0);
 var slider = new Slider(0,1,"ball2.apllied_force.x",400,200,100,5);
- var sliderm = new Slider(1,1000,"ball2.mass",600,200,100,5);
+var sliderm = new Slider(1,1000,"ball2.mass",600,200,100,5);
 
 void setup ()
 {
@@ -88,13 +83,12 @@ void draw ()
 {
   background(100, 100, 100);
   stroke(0,0,0);
-  text(slider.value,100,200,200,200);
   text(slider.real_value,200,200,200,200);
-   text(sliderm.value,700,200,200,200);
+  text(sliderm.real_value,700,200,200,200);
   slider.update();
   slider.draw();
-   sliderm.update();
-   sliderm.draw();
+  sliderm.update();
+  sliderm.draw();
 
 
 ball2.addForce(ball2.apllied_force);
