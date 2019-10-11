@@ -29,13 +29,13 @@ Physical.prototype.define_friction = function() //define atrito
     {
         if (this.velocity.mag() != 0)
         {
-            this.friction = PVector.mult(this.normal, this.cDinamicFriction);
+            this.friction = PVector.mult(PVector.mag(this.normal), this.cDinamicFriction);
         }
         else
         {
             if(this.apllied_force.mag() > PVector.mag(PVector.mult(this.normal, this.cStaticFriction)) )
             {
-                this.friction = PVector.mult(this.normal, this.cDinamicFriction);
+                this.friction = PVector.mult(PVector.mag(this.normal), this.cDinamicFriction);
             }
             else
             {
