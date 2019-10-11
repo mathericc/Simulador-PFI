@@ -16,25 +16,31 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
   this.mass = mass;
   this.density = density;
   this.apllied_force = new PVector(0,0);
-  this.static_max_friction = 2;
-  this.dinamic_cfriction = 0.3;
+  this.cStaticFriction = 0.5;
+  this.cDinamicFriction = 0.3;
+  this.weight = new PVector(0,0.1);
+  this.normal = PVector.mult(this.weight, -1);
   this.friction = new PVector (0,0);
 }
 
 Physical.prototype.define_friction = function() //define atrito
 {
-    if ( this.velocity.mag() != 0 ) //Dinâmico
+    if (this.apllied_force.mag() != 0)
     {
-        this.friction = PVector.setMag(PVector.mult(this.apllied_force, -1), this.dinamic_cfriction );
-    }
-    else  //Estático
-    {
-        if ( this.apllied_force.mag() <= this.static_max_friction){
-            this.friction = PVector.mult(this.apllied_force, -1);
+        if (this.velocity.mag() != 0)
+        {
+            this.friction = PVector.mult(this.normal, this.cDinamicFriction);
         }
         else
         {
-            this.friction = PVector.setMag(PVector.mult(this.apllied_force, -1), this.dinamic_cfriction );
+            if(this.apllied_force.mag() > PVector.mag(PVector.mult(this.normal, this.cStaticFriction)) )
+            {
+                this.friction = PVector.mult(this.normal, this.cDinamicFriction);
+            }
+            else
+            {
+                this.friction = PVector.mult(this.apllied_force, -1);
+            }
         }
     }
 }
