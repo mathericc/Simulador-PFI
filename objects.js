@@ -32,19 +32,20 @@ Physical.prototype.define_friction = function() //define atrito
         this.friction.x = 1;
         if (this.velocity.mag() != 0)
         {
+            console.log('andando ');
             this.friction.setMag(this.cDinamicFriction);
         }
         else
         {
-            console.log('velocidade == 0')
+            console.log('velocidade == 0');
             if(this.apllied_force.x > this.cStaticFriction )
             {
-                console.log('quebrou estático')
+                console.log('quebrou estático');
                 this.friction.setMag(this.cDinamicFriction);
             }
             else
             {
-                console.log('não quebrou')
+                console.log('não quebrou');
                 this.friction.setMag(apllied_force.mag());
             }
         }
