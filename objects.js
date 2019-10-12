@@ -28,19 +28,13 @@ Physical.prototype.define_friction = function() //define atrito
     if (this.apllied_force.mag() != 0)
     {
 
-
         this.friction.x = 1;
-        if (this.velocity.mag() != 0)
-        {
-            
-            this.friction.setMag(this.cDinamicFriction);
-        }
         if (this.velocity.mag() == 0)
         {
-            console.log('velocidade == 0');
+
             if(this.apllied_force.x > this.cStaticFriction )
             {
-                console.log('quebrou estático');
+
                 this.friction.setMag(this.cDinamicFriction);
             }
             else
@@ -48,6 +42,9 @@ Physical.prototype.define_friction = function() //define atrito
                 console.log('não quebrou');
                 this.friction.setMag(apllied_force.mag());
             }
+        }
+        else {
+            this.friction.setMag(this.cDinamicFriction);
         }
         if (this.apllied_force.mag() > 0)
         {
