@@ -86,6 +86,7 @@ void draw ()
   text(slider.value,200,200,200,200);
   text(sliderm.value,700,200,200,200);
   text(ball2.friction,1000,200,200,200);
+  text(ball2.velocity.mag(),1100,200,200,200);
   slider.update();
   slider.draw();
   sliderm.update();
