@@ -42,7 +42,7 @@ Physical.prototype.define_friction = function() //define atrito
             }
             else
             {
-                this.friction.setMag(PVector.mult(this.apllied_force, -1));
+                this.friction.setMag(PVector.mag(PVector.mult(this.apllied_force, -1)));
             }
         }
         if (this.apllied_force.mag() > 0)
