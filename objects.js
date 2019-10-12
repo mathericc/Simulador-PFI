@@ -36,21 +36,15 @@ Physical.prototype.define_friction = function() //define atrito
         }
         else
         {
-            if(this.apllied_force.mag() > abs(this.cStaticFriction) )
+            if(this.apllied_force.mag() > this.cStaticFriction )
             {
                 this.friction.setMag(this.cDinamicFriction);
             }
             else
             {
-                this.friction.setMag(PVector.mag(PVector.mult(this.apllied_force, -1)));
+                this.friction.setMag(PVector.mult(this.apllied_force, -1).mag());
             }
         }
-        if (this.apllied_force.mag() > 0)
-        {
-            this.friction.mult(-1);
-        }
-
-
     }
     else {
         console.log('Deu não');
