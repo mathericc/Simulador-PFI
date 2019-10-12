@@ -36,7 +36,7 @@ Physical.prototype.define_friction = function() //define atrito
         }
         else
         {
-            if(this.apllied_force.mag() > this.cStaticFriction )
+            if(this.apllied_force.mag() > abs(this.cStaticFriction) )
             {
                 this.friction.setMag(this.cDinamicFriction);
             }
