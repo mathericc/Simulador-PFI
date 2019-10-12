@@ -28,11 +28,11 @@ Physical.prototype.define_friction = function() //define atrito
     if (this.apllied_force.mag() != 0)
     {
 
-        console.log('Foi');
+
         this.friction.x = 1;
         if (this.velocity.mag() != 0)
         {
-            console.log('andando ');
+            
             this.friction.setMag(this.cDinamicFriction);
         }
         if (this.velocity.mag() == 0)
