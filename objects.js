@@ -35,7 +35,7 @@ Physical.prototype.define_friction = function() //define atrito
             console.log('andando ');
             this.friction.setMag(this.cDinamicFriction);
         }
-        if (this.velocity.mag == 0)
+        if (this.velocity.mag() == 0)
         {
             console.log('velocidade == 0');
             if(this.apllied_force.x > this.cStaticFriction )
