@@ -42,9 +42,15 @@ Physical.prototype.define_friction = function() //define atrito
             }
             else
             {
-                this.friction.setMag(PVector.mult(this.apllied_force, -1).mag());
+                this.friction.setMag(apllied_force.mag());
             }
         }
+        if (this.apllied_force.mag() > 0)
+        {
+            this.friction.mult(-1);
+        }
+
+
     }
     else {
         console.log('Deu não');
