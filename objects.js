@@ -40,7 +40,7 @@ Physical.prototype.define_friction = function() //define atrito
             else
             {
                 console.log('não quebrou');
-                this.friction.setMag(apllied_force.mag());
+                this.friction.setMag(this.apllied_force.mag());
             }
         }
         else {
