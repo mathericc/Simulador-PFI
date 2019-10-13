@@ -92,7 +92,6 @@ void draw ()
   sliderm.update();
   sliderm.draw();
 
-
 ball2.addForce(Pvector.add(ball2.apllied_force, ball2.friction);
 
 //ball2.addForce(gravity);
