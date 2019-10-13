@@ -92,11 +92,10 @@ void draw ()
   sliderm.update();
   sliderm.draw();
 
-ball2.addForce(Pvector.add(ball2.apllied_force, ball2.friction);
+var force = PVector.add(ball2.apllied_force, ball2.friction);
+ball2.addForce(force);
 
-//ball2.addForce(gravity);
-
-  ball2.update();
+ ball2.update();
  fill(0,255,0);
  rectMode(CORNER);
  rect(0,275,1280,720);
