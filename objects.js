@@ -61,10 +61,10 @@ Physical.prototype.define_friction = function() //define atrito
 
 Physical.prototype.update = function()
 {
+    this.define_friction();
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
-    this.define_friction();
 }
 
 
