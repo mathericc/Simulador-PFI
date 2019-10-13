@@ -94,7 +94,7 @@ void draw ()
 
 var force = PVector.add(ball2.apllied_force, ball2.friction);
 text(force.mag(),1100,250,200,200);
-ball2.addForce(force);
+
 
  ball2.update();
  fill(0,255,0);
