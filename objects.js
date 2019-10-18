@@ -56,7 +56,7 @@ Physical.prototype.define_friction = function() //define atrito
 Physical.prototype.update = function()
 {
     this.define_friction();
-    if (this.velocity.x > 0 && this.friction.x > 0 || this.velocity.x < 0 %% this.friction.x < 0)
+    if (this.velocity.x > 0 && this.friction.x > 0 || this.velocity.x < 0 && this.friction.x < 0)
     {
         this.velocity.x = 0;
     }
