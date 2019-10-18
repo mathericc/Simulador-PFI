@@ -31,18 +31,18 @@ Physical.prototype.define_friction = function() //define atrito
 
         friction = PVector.mult(this.apllied_force, -1);
 
-        // if (this.velocity.mag() != 0)
-        // {
-        //     friction.setMag(this.cDinamicFriction);
-        // }
-        // else
-        // {
-        //     if (this.apllied_force.mag() > this.cStaticFriction)
-        //     {
-        //         console.log('Quebrou')
-        //         friction.setMag(this.cDinamicFriction);
-        //     }
-        // }
+        if (this.velocity.mag() != 0)
+        {
+            friction.setMag(this.cDinamicFriction);
+        }
+        else
+        {
+            if (this.apllied_force.mag() > this.cStaticFriction)
+            {
+                console.log('Quebrou')
+                friction.setMag(this.cDinamicFriction);
+            }
+        }
 
 
     }
