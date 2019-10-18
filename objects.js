@@ -20,7 +20,7 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
   this.cDinamicFriction = 0.3;
   this.weight = new PVector(0,0.1);
   this.normal = PVector.mult(this.weight, -1);
-  this.friction = new PVector (0,0);
+  this.friction = new PVector(0,0);
 }
 
 Physical.prototype.define_friction = function() //define atrito
