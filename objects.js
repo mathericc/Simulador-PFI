@@ -28,27 +28,7 @@ Physical.prototype.define_friction = function() //define atrito
     if (this.apllied_force.mag() != 0)
     {
 
-        this.friction.x = this.apllied_force.x -1;
-        if (this.velocity.mag() == 0)
-        {
-
-            if(this.apllied_force.mag() > this.cStaticFriction )
-            {
-
-                this.friction.setMag(this.cDinamicFriction);
-            }
-            else
-            {
-                console.log('não quebrou');
-                this.friction.setMag(this.apllied_force.mag());
-                console.log(this.friction);
-            }
-        }
-        else {
-            this.friction.setMag(this.cDinamicFriction);
-        }
-
-
+        if (this.velocity.mag())
 
     }
     else {
