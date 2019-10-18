@@ -32,14 +32,14 @@ Physical.prototype.define_friction = function() //define atrito
         friction.setMag(-this.apllied_force.mag());
         if (this.velocity.mag() != 0)
         {
-            friction.mult(this.cDinamicFriction);
+            friction.setMag(this.cDinamicFriction);
         }
         else
         {
             if (this.apllied_force.mag() > this.cStaticFriction)
             {
                 console.log('Quebrou')
-                friction.mult(this.cDinamicFriction);
+                friction.setMag(this.cDinamicFriction);
             }
         }
 
