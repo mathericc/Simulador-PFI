@@ -30,6 +30,10 @@ Physical.prototype.define_friction = function() //define atrito
     {
 
         friction.setMag(-this.apllied_force.mag());
+        if (this.velocity.mag() != 0)
+        {
+            friction.mult(cDinamicFriction);
+        }
 
 
     }
