@@ -28,9 +28,9 @@ Physical.prototype.define_friction = function() //define atrito
     var friction = new PVector(0, 0);
     if (this.apllied_force.mag() != 0)
     {
-        console.log(-this.apllied_force.mag());
-        friction.setMag(-this.apllied_force.mag());
-        console.log(friction)
+
+        friction = this.apllied_force.mult(-1);
+
         // if (this.velocity.mag() != 0)
         // {
         //     friction.setMag(this.cDinamicFriction);
