@@ -34,6 +34,13 @@ Physical.prototype.define_friction = function() //define atrito
         {
             friction.mult(cDinamicFriction);
         }
+        else
+        {
+            if (this.apllied_force.mag() > this.cStaticFriction)
+            {
+                console.log('Quebrou')
+            }
+        }
 
 
     }
