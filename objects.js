@@ -25,7 +25,7 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
 
 Physical.prototype.define_friction = function() //define atrito
 {
-    var friction = PVector(0, 0);
+    var friction = new PVector(0, 0);
     if (this.apllied_force.mag() != 0)
     {
 
