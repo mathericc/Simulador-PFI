@@ -34,7 +34,7 @@ Physical.prototype.define_friction = function() //define atrito
         if (this.velocity.mag() != 0)
         {
             friction.setMag(this.cDinamicFriction);
-            console.log(this.velocity.mag());
+
         }
         else
         {
@@ -56,6 +56,8 @@ Physical.prototype.define_friction = function() //define atrito
 Physical.prototype.update = function()
 {
     this.define_friction();
+    if this.velocity.x > 0 and this.friction.x > 0 or this.velocity.x < 0 and this.friction.x < 0:
+        this.velocity.x = 0;
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
