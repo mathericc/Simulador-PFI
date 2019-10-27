@@ -1,122 +1,104 @@
- var gravity = new PVector(0, 0.1);
-Physical.prototype.drawVectors = function()
-{
 
-    stroke(0,255,0);
-    strokeWeight(2);
-    line(this.position.x, this.position.y, this.position.x + this.velocity.x * 10, this.position.y + this.velocity.y *10);
-    fill(0,255,0);
-    textSize(30);
-    text('v', this.position.x + this.velocity.x * 10 -3 , this.position.y + this.velocity.y *10 -3 );
-
-    stroke(0,0,255);
-
-    line(this.position.x, this.position.y, this.position.x + this.velocity.x * 10, this.position.y);
-    fill(0,0,255);
-
-    text('vx', this.position.x + this.velocity.x * 10 -3 , this.position.y -3 );
-
-    stroke(0,0,255);
-
-    line(this.position.x, this.position.y, this.position.x, this.position.y + this.velocity.y *10);
-    fill(0,0,255);
-    textSize(30);
-    text('vy', this.position.x, this.position.y + this.velocity.y *10 -3 );
-
-    stroke(255,0,0);
-
-    line(this.position.x, this.position.y, this.position.x + this.friction.x * 500, this.position.y + this.friction.y *500);
-    fill(255,0,0);
-
-    text('At',  this.position.x + this.friction.x * 500, this.position.y + this.friction.y *500);
-}
-
-var ball = new Unphysical(0,200,50,50);
+//criando obejto bola para testes
 var ball2 = new Physical(200,250,50,50);
 
-//Métodos do slider
+//Métodos do slider de desenho do slider --------------------------------------------------------------
+
+//desenhar slider
 Slider.prototype.draw = function()
 {
-  rectMode(CENTER);
-  fill(255,255,255);
-  rect(this.position.x,this.position.y,this.w,this.h);
-  fill(0,0,255);
-  ellipse(this.position.x+this.real_value,this.position.y,25,25);
+    rectMode(CENTER);
+    fill(255,255,255);
+    rect(this.position.x,this.position.y,this.w,this.h);
+    fill(0,0,255);
+    ellipse(this.position.x+this.real_value,this.position.y,25,25);
 }
-var over = false;
-var locked = false;
+
+//vericar se mouse está no slide e mudar valores conforme a posição do slide (Talvez possa ser melhorado)
+var over = false; //mouse em cima
+
 Slider.prototype.update = function()
 {
-  eval((this.variavel) + "=" + (this.value));
-  if (
-      (mouseX < this.position.x+this.real_value)+25 && mouseX > (this.position.x+this.real_value)-25 &&
-      (mouseX < this.position.y)+25 && mouseX > (this.position.y)-25
-      ){
-          over = true;
-      }
-    else{
+    eval((this.variavel) + "=" + (this.value)); // modifica o valor a qual o slide se refere
+
+    //verifica se mouse está em cima da bolinha
+    if  (
+        (mouseX < this.position.x+this.real_value)+25 && mouseX > (this.position.x+this.real_value)-25 &&
+        (mouseX < this.position.y)+25 && mouseX > (this.position.y)-25
+        )
+    {
+        over = true;
+    }
+    else
+    {
         over = false;
     }
-    if (mousePressed == true && over == true){
-        if (mouseX <= this.position.x + this.w/2 && mouseX >= this.position.x - this.w/2){
+
+    //movimenta se mouse está em cima
+    if (mousePressed == true && over == true)
+    {
+        if (mouseX <= this.position.x + this.w/2 && mouseX >= this.position.x - this.w/2)
+        {
             this.real_value = mouseX-this.position.x;
             this.value = map(mouseX-this.position.x, -this.w/2, this.w/2, this.min, this.max); //Regra de três do slider
         }
-  }
+    }
 
 }
 
 
+//criando sliders
+var slider = new Slider(0,1,"ball2.apllied_force.x",400,200,100,5); //modifica força aplicada
+var sliderm = new Slider(1,1000,"ball2.mass",600,200,100,5); // modifica massa
 
 
-var wind = new PVector(0, 0);
-var slider = new Slider(0,1,"ball2.apllied_force.x",400,200,100,5);
-var sliderm = new Slider(1,1000,"ball2.mass",600,200,100,5);
+// Relacionado ao canvas e ao desenho ------------------------------------------
 
+//Confgurações iniciais do canvas
 void setup ()
 {
-  size(1280,720);
-  background(100, 100, 100);
+    size(1280,720);
+    background(100, 100, 100);
 }
 
 void draw ()
 {
-  background(100, 100, 100);
-  stroke(0,0,0);
-  text(slider.value,200,200,200,200);
-  text(sliderm.value,700,200,200,200);
-  text(ball2.friction,1000,200,200,200);
-  text(ball2.apllied_force.mag(),1100,200,200,200);
-  slider.update();
-  slider.draw();
-  sliderm.update();
-  sliderm.draw();
 
-   ball2.update();
-
-var force = PVector.add(ball2.apllied_force, ball2.friction);
-text(force.mag(),1100,250,200,200);
-ball2.addForce(force);
+    background(100, 100, 100); //Para que a animação funcione.
+    stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
 
 
+    //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
+    slider.update();
+    slider.draw();
+    sliderm.update();
+    sliderm.draw();
 
- fill(0,255,0);
- rectMode(CORNER);
- rect(0,275,1280,720);
- fill(255,255,255);
-  rectMode(CENTER);
-  rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
-  ball2.drawVectors();
-  if (ball2.position.x > 1280)
-  {
-    ball2.position.x = 0;
-  }
-   if (ball2.position.x < 0)
-  {
-    ball2.position.x = 1280;
-  }
-   if (ball2.position.y > 720)
-  {
-    ball2.velocity.y *= -1;
-  }
+    // Dando update nos obejetos físicos
+    ball2.update();
+
+    // Calcula a força resultante da força aplicada + o atrito e aplica está força no objeto bola
+    var force = PVector.add(ball2.apllied_force, ball2.friction);
+    ball2.addForce(force);
+
+
+    // Questões relacionadas ao desenho do quadrado (Isto deve ser mudado par um método do Physical)
+    fill(0,255,0);
+    rectMode(CORNER);
+    rect(0,275,1280,720);
+    fill(255,255,255);
+    rectMode(CENTER);
+    rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
+
+
+    // Para que o objeto ball2 quando sair da tela volte do outro lado. (Talvez possa ser mudado)
+    if (ball2.position.x > 1280)
+    {
+        ball2.position.x = 0;
+    }
+    if (ball2.position.x < 0)
+    {
+        ball2.position.x = 1280;
+    }
+
 }
