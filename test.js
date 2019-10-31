@@ -1,6 +1,10 @@
 
+//definição de forças
+
+var gravity = new PVector(0, 0);
+
 //criando obejto bola para testes
-var ball2 = new Physical(200,250,50,50);
+var ball2 = new Physical(200,550,50,50);
 
 //Métodos do slider de desenho do slider --------------------------------------------------------------
 
@@ -12,6 +16,9 @@ Slider.prototype.draw = function()
     rect(this.position.x,this.position.y,this.w,this.h);
     fill(0,0,255);
     ellipse(this.position.x+this.real_value,this.position.y,25,25);
+    fill(255,255,255);
+    text(this.name, this.position.x - this.w * 0.5, this.position.y - this.h*5, 200, 200);
+    text(this.value, this.position.x, this.position.y + this.h*4, 200, 200);
 }
 
 //vericar se mouse está no slide e mudar valores conforme a posição do slide (Talvez possa ser melhorado)
@@ -48,13 +55,15 @@ Slider.prototype.update = function()
 
 
 //criando sliders
-var slider = new Slider(0,1,"ball2.apllied_force.x",400,200,100,5); //modifica força aplicada
-var sliderm = new Slider(1,1000,"ball2.mass",600,200,100,5); // modifica massa
+var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",400,200,100,5); //modifica força aplicada
+var sliderm = new Slider("Massa", 1,100,"ball2.mass",600,200,100,5); // Digamos que está em Kg
+
+var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",800,200,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
 
 
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
-//Confgurações iniciais do canvas
+//Configurações iniciais do canvas
 void setup ()
 {
     size(1280,720);
@@ -74,8 +83,21 @@ void draw ()
     sliderm.update();
     sliderm.draw();
 
+
     // Dando update nos obejetos físicos
     ball2.update();
+
+
+    //Aplicando a gravidade
+    gravity = new PVector(0, 0.1);
+    sliderg.update();
+    sliderg.draw();
+    gravity.y *= ball2.mass;//peso
+    ball2.weight = gravity;//registra o peso no objeto
+    ball2.addForce(gravity);
+    ball2.normal =PVector.mult(gravity, -1);//normal
+    ball2.addForce(PVector.mult(gravity, -1));//registra normal no objeto
+
 
     // Calcula a força resultante da força aplicada + o atrito e aplica está força no objeto bola
     var force = PVector.add(ball2.apllied_force, ball2.friction);
@@ -85,7 +107,7 @@ void draw ()
     // Questões relacionadas ao desenho do quadrado (Isto deve ser mudado par um método do Physical)
     fill(0,255,0);
     rectMode(CORNER);
-    rect(0,275,1280,720);
+    rect(0,575,1280,720);
     fill(255,255,255);
     rectMode(CENTER);
     rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);

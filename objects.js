@@ -27,9 +27,8 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
     this.friction = new PVector(0,0);
 
     //Peso e normal (Porém são só valores não estão relacionados a gravidade )
-    this.weight = new PVector(0,0.1);
-    this.normal = PVector.mult(this.weight, -1);
-
+    this.weight = new PVector(0,0);
+    this.normal = new PVector(0,0);
 }
 
 //Métodos da classe Physical
@@ -41,27 +40,33 @@ Physical.prototype.define_friction = function()
 {
     var friction = new PVector(0, 0);
 
-    if (this.apllied_force.mag() != 0)
+    //primeiro verifica se o atrito está se opondo ao movimento, caso contrário faz com que isto aconteça.
+    if (this.friction.x > 0 && this.velocity.x > 0 || this.friction.x < 0 && this.velocity.x < 0)
     {
-
+        this.velocity.x = 0;
         friction = PVector.mult(this.apllied_force, -1);
-
-        if (this.velocity.mag() != 0)
-        {
-            friction.setMag(this.cDinamicFriction);
-
+    }else{
+        //Depois verfica se atrito que deve ser aplicado é o atrito dinâmico ou estático
+        if (this.apllied_force.mag() != 0){
+            friction = PVector.mult(this.apllied_force, -1);
+        }else{
+            friction = PVector.mult(this.velocity, -1);
         }
-        else
-        {
-            if (this.apllied_force.mag() > this.cStaticFriction)
-            {
+        if (this.velocity.mag() == 0){
 
-                friction.setMag(this.cDinamicFriction);
+            if (this.apllied_force.mag() > this.cStaticFriction * this.normal.mag()){
+
+                friction.setMag(this.cDinamicFriction * this.normal.mag());
             }
+
+        }else {
+
+            friction.setMag(this.cDinamicFriction * this.normal.mag());
         }
 
 
     }
+
 
     this.friction = friction;
 }
@@ -72,11 +77,7 @@ Physical.prototype.update = function()
 
     this.define_friction();
 
-    //gambiarra por atrito funcionar direito (Deve ser mudado)
-    if (this.velocity.x > 0 && this.friction.x > 0 || this.velocity.x < 0 && this.friction.x < 0)
-    {
-        this.velocity.x = 0;
-    }
+
 
     //Questoões da movimentação
     this.velocity.add(this.acceleration);
@@ -88,16 +89,18 @@ Physical.prototype.update = function()
 Physical.prototype.addForce = function(force)
 {
     // f = m * a  logo a = f / m  então está funça calcula a aceleração gerada por uma força e aplica na aceleration
-    var f = PVector.div(force, this.mass);
+    var f = PVector.div(PVector.div(force, 60), this.mass); // a força é dividida por 60 pois ela é aplicada 60 vezes por segundo
     this.acceleration.add(f);
 }
 
 // Slider ------------------------------------------------------------
 // É um controle deslizante para mudar certos valores
-var Slider = function(min, max, variavel,x=200, y=200, w=10, h=10)
+var Slider = function(name,min, max, variavel,x=200, y=200, w=10, h=10)
 {
     Unphysical.call(this,x,y,w,h);
 
+    //nome que será exibido em cima do slider
+    this.name = name;
     //valores limite para o slider
     this.min = min;
     this.max = max;
