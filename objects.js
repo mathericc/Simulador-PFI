@@ -32,6 +32,7 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
     this.normal = new PVector(0,0);
 
     this.distance = 0; //para marcar a distância percorrida pelo objeto em metros
+    this.percorrido = 0;
 }
 
 //Métodos da classe Physical
@@ -83,7 +84,7 @@ Physical.prototype.update = function()
 
 
     //Questoões da movimentação
-    this.distance = 200 + 1/2 * this.acceleration.mag()* time ^ 2 ;
+    this.percorrido = this.position.x + this.distance; // pois a posição inicial é 200
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
@@ -99,12 +100,13 @@ Physical.prototype.addForce = function(force)
 
 // Slider ------------------------------------------------------------
 // É um controle deslizante para mudar certos valores
-var Slider = function(name,min, max, variavel,x=200, y=200, w=10, h=10)
+var Slider = function(name, unity, min, max, variavel,x=200, y=200, w=10, h=10)
 {
     Unphysical.call(this,x,y,w,h);
 
     //nome que será exibido em cima do slider
     this.name = name;
+    this.unity = unity;
     //valores limite para o slider
     this.min = min;
     this.max = max;

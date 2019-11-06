@@ -6,7 +6,7 @@ var start = Date.now();
 var gravity = new PVector(0, 0);
 
 //criando obejto bola para testes
-var ball2 = new Physical(200,550,50,50);
+var ball2 = new Physical(0,550,50,50);
 
 //Métodos do slider de desenho do slider --------------------------------------------------------------
 
@@ -19,14 +19,14 @@ Slider.prototype.draw = function()
     fill(0,0,255);
     ellipse(this.position.x+this.real_value,this.position.y,25,25);
     fill(255,255,255);
-    textSize(20);
+    textSize(15);
     text(this.name, this.position.x - this.w * 0.5, this.position.y - this.h*5, 200, 200);
-    text(this.value, this.position.x, this.position.y + this.h*4, 200, 200);
+    text(this.value.toFixed(1) + this.unity, this.position.x, this.position.y + this.h*4, 200, 200);
 
     if (this.cases){
         for (var i = 0; i < this.cases.length; i++){
-            if (this.value == this.cases[i][1] ){
-                fill(0,0,0);
+            if (this.value >= this.cases[i][1] && this.value <= this.cases[i][2]){
+                fill(255,255,255);
                 text(this.cases[i][0],this.position.x, this.position.y + this.h*6, 200, 200 );
             }
         }
@@ -66,10 +66,10 @@ Slider.prototype.update = function()
 
 
 //criando sliders
-var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",1180,80,100,5); //modifica força aplicada
-var sliderm = new Slider("Massa", 1,100,"ball2.mass",1180,160,100,5); // Digamos que está em Kg
-var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
-sliderg.defineCases([['Terra', 9.8], ["Marte ou Mércurio", 3.7], ['Terra', 9.8]]);
+var slider = new Slider("Força Aplicada", ' N', 0,100,"ball2.apllied_force.x",1180,80,100,5); //modifica força aplicada
+var sliderm = new Slider("Massa", ' Kg', 1,100,"ball2.mass",1180,160,100,5); // Digamos que está em Kg
+var sliderg = new Slider("Gravidade", ' m/s²', 3.7, 24.79, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
+sliderg.defineCases([ ['Terra', 9.8, 10], ["Marte ou Mércurio", 3.7, 4] ]);
 
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
@@ -85,15 +85,17 @@ void draw ()
 
     background(064,224,208); //Para que a animação funcione.
     noStroke(); //para os desenhos terem ua linha preta ao redor.
-    fill(100,100,100);//cor do quadrado
-    rect(1180,160,140,280);//quadrado de fundo dos slides
+    fill(150,150,150);//cor do quadrado
+    rect(1180,160,200,320);//quadrado de fundo dos slides
 
     //Timer do tempo
     time = (Date.now() - start)/1000;
     textSize(30);
     fill(255,255,255);
     text(time + ' segundos', 200, 200, 1000, 1000);
-    text(ball2.distance + ' segundos', 200, 400, 1000, 1000);
+    text(ball2.percorrido.toFixed(2) + ' m ', 200, 400, 1000, 1000);
+    text(ball2.velocity.mag().toFixed(2) + ' m/s', 200, 100, 1000, 1000);
+    text(ball2.acceleration.mag().toFixed(2) + ' m/s² ', 600, 200, 1000, 1000);
     //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
     slider.update();
     slider.draw();
@@ -134,10 +136,7 @@ void draw ()
     if (ball2.position.x > 1280)
     {
         ball2.position.x = 0;
-    }
-    if (ball2.position.x < 0)
-    {
-        ball2.position.x = 1280;
+        ball2.distance += 1280;
     }
 
 }
