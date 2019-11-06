@@ -66,17 +66,16 @@ var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,240,100,5); /
 //Configurações iniciais do canvas
 void setup ()
 {
-    size(1280,720);
-    background(064,224,208);
+    size(1280,720);//tamanho da "tela"
+    background(064,224,208);//cor de fundo (ceu)
 }
 
 void draw ()
 {
-    fill(100,100,100);//cor do quadrado
-    rect(1200,190,140,280);//quadrado de fundo dos slides
     background(064,224,208); //Para que a animação funcione.
     stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
-
+    fill(100,100,100);//cor do quadrado
+    rect(1200,190,140,280);//quadrado de fundo dos slides
 
     //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
     slider.update();
