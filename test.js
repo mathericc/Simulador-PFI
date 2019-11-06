@@ -64,19 +64,21 @@ Slider.prototype.update = function()
 
 
 //criando sliders
-var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",400,200,100,5); //modifica força aplicada
-var sliderm = new Slider("Massa", 1,100,"ball2.mass",600,200,100,5); // Digamos que está em Kg
+var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",1180,80,100,5); //modifica força aplicada
+var sliderm = new Slider("Massa", 1,100,"ball2.mass",1180,160,100,5); // Digamos que está em Kg
 
 var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",800,200,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
 sliderg.defineCases([['Terra', 9.8], ["Marte ou Mércurio", 3.7], ['Terra', 9.8]]);
+var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
+
 
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
 //Configurações iniciais do canvas
 void setup ()
 {
-    size(1280,720);
-    background(100, 100, 100);
+    size(1280,720);//tamanho da "tela"
+    background(064,224,208);//cor de fundo (ceu)
 }
 
 void draw ()
@@ -85,6 +87,10 @@ void draw ()
 
     background(100, 100, 100); //Para que a animação funcione.
     stroke(0,0,0); //para os desenhos terem uma linha preta ao redor.
+    background(064,224,208); //Para que a animação funcione.
+    stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
+    fill(100,100,100);//cor do quadrado
+    rect(1180,160,140,280);//quadrado de fundo dos slides
 
     text(time + 'segundos', 200, 200, 200, 200);
     //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
@@ -115,10 +121,10 @@ void draw ()
 
 
     // Questões relacionadas ao desenho do quadrado (Isto deve ser mudado par um método do Physical)
-    fill(0,255,0);
+    fill(0,255,100);
     rectMode(CORNER);
     rect(0,575,1280,720);
-    fill(255,255,255);
+    fill(240,128,128);
     rectMode(CENTER);
     rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
 
