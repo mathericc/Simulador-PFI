@@ -1,3 +1,4 @@
+var time = 0;
 // ***Aqui se encontram as definições das classes e de seus métodos não relacionados a desenho.
 //Métodos relacionados a desenho são definidos no test.js
 
@@ -82,6 +83,7 @@ Physical.prototype.update = function()
 
 
     //Questoões da movimentação
+    this.distance = 200 + 1/2 * this.acceleration.mag()* time ^ 2 ;
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
@@ -114,6 +116,8 @@ var Slider = function(name,min, max, variavel,x=200, y=200, w=10, h=10)
 
     // Armazena os casos os valores que devem mostrar algo e o que devem mostrar
     this.cases = [];
+
+    this.mouseOver = false;
 }
 
 Slider.prototype.defineCases = function(cases){

@@ -1,3 +1,5 @@
+
+//Inicio do Timer do tempo
 var start = Date.now();
 //definição de forças
 
@@ -17,6 +19,7 @@ Slider.prototype.draw = function()
     fill(0,0,255);
     ellipse(this.position.x+this.real_value,this.position.y,25,25);
     fill(255,255,255);
+    textSize(20);
     text(this.name, this.position.x - this.w * 0.5, this.position.y - this.h*5, 200, 200);
     text(this.value, this.position.x, this.position.y + this.h*4, 200, 200);
 
@@ -30,8 +33,7 @@ Slider.prototype.draw = function()
     }
 }
 
-//vericar se mouse está no slide e mudar valores conforme a posição do slide (Talvez possa ser melhorado)
-var over = false; //mouse em cima
+
 
 Slider.prototype.update = function()
 {
@@ -39,19 +41,19 @@ Slider.prototype.update = function()
 
     //verifica se mouse está em cima da bolinha
     if  (
-        (mouseX < this.position.x+this.real_value)+25 && mouseX > (this.position.x+this.real_value)-25 &&
-        (mouseX < this.position.y)+25 && mouseX > (this.position.y)-25
+        mouseX < (this.position.x+this.real_value)+25 && mouseX > (this.position.x+this.real_value)-25 &&
+        mouseY < this.position.y+25 && mouseY > this.position.y-25
         )
     {
-        over = true;
+        this.mouseOver = true;
     }
     else
     {
-        over = false;
+        this.mouseOver = false;
     }
 
     //movimenta se mouse está em cima
-    if (mousePressed == true && over == true)
+    if (mousePressed == true && this.mouseOver == true)
     {
         if (mouseX <= this.position.x + this.w/2 && mouseX >= this.position.x - this.w/2)
         {
@@ -66,11 +68,8 @@ Slider.prototype.update = function()
 //criando sliders
 var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",1180,80,100,5); //modifica força aplicada
 var sliderm = new Slider("Massa", 1,100,"ball2.mass",1180,160,100,5); // Digamos que está em Kg
-
-var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",800,200,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
-sliderg.defineCases([['Terra', 9.8], ["Marte ou Mércurio", 3.7], ['Terra', 9.8]]);
 var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
-
+sliderg.defineCases([['Terra', 9.8], ["Marte ou Mércurio", 3.7], ['Terra', 9.8]]);
 
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
@@ -83,16 +82,18 @@ void setup ()
 
 void draw ()
 {
-    time = (Date.now() - start)/1000;
 
-    background(100, 100, 100); //Para que a animação funcione.
-    stroke(0,0,0); //para os desenhos terem uma linha preta ao redor.
     background(064,224,208); //Para que a animação funcione.
-    stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
+    noStroke(); //para os desenhos terem ua linha preta ao redor.
     fill(100,100,100);//cor do quadrado
     rect(1180,160,140,280);//quadrado de fundo dos slides
 
-    text(time + 'segundos', 200, 200, 200, 200);
+    //Timer do tempo
+    time = (Date.now() - start)/1000;
+    textSize(30);
+    fill(255,255,255);
+    text(time + ' segundos', 200, 200, 1000, 1000);
+    text(ball2.distance + ' segundos', 200, 400, 1000, 1000);
     //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
     slider.update();
     slider.draw();
