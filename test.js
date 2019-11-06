@@ -75,7 +75,7 @@ void draw ()
     background(064,224,208); //Para que a animação funcione.
     stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
     fill(100,100,100);//cor do quadrado
-    rect(1200,190,140,280);//quadrado de fundo dos slides
+    rect(1220,200,140,280);//quadrado de fundo dos slides
 
     //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
     slider.update();
