@@ -106,7 +106,7 @@ void draw ()
 
     // Questões relacionadas ao desenho do quadrado (Isto deve ser mudado par um método do Physical)
     fill(100,100,100)
-    rect(1200,150,120,300)
+    rect(1200,190,140,280)
     fill(0,255,100);
     rectMode(CORNER);
     rect(0,575,1280,720);
