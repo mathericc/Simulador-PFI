@@ -67,7 +67,7 @@ var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,240,100,5); /
 void setup ()
 {
     size(1280,720);
-    background(100, 100, 100);
+    background(030,144,255);
 }
 
 void draw ()
@@ -108,7 +108,7 @@ void draw ()
     fill(0,255,100);
     rectMode(CORNER);
     rect(0,575,1280,720);
-    fill(255,255,255);
+    fill(255,069,000);
     rectMode(CENTER);
     rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
 
