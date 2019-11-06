@@ -37,6 +37,32 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
 
 //Métodos da classe Physical
 
+Physical.prototype.define_cDinamicFriction  = function()
+{
+    this.cDinamicFriction = this.cStaticFriction - 0.2;
+
+    if (this.cStaticFriction == 1)
+    {
+        this.cDinamicFriction = 0.8;
+    }
+    if (this.cStaticFriction == 0.8)
+    {
+        this.cDinamicFriction = 0.6;
+    }
+    if (this.cStaticFriction == 0.10)
+    {
+        this.cDinamicFriction = 0.05;
+    }
+    if (this.cStaticFriction == 0.5)
+    {
+        this.cDinamicFriction = 0.2;
+    }
+    if (this.cStaticFriction == 0.12)
+    {
+        this.cDinamicFriction = 0.06;
+    }
+}
+
 //método para definir qual será valor do atrito (ele é chamda no método update)
 //(Ainda não está relacionado a gravidade, precisa realacionar)
 //(Necessário retirar verficação que deixa atrito igual a zero se força igual a zero)
@@ -78,7 +104,7 @@ Physical.prototype.define_friction = function()
 //Método para atualizações necessárias a todo momento
 Physical.prototype.update = function()
 {
-
+    this.define_cDinamicFriction();
     this.define_friction();
 
 

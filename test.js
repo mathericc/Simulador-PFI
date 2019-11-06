@@ -21,13 +21,13 @@ Slider.prototype.draw = function()
     fill(255,255,255);
     textSize(15);
     text(this.name, this.position.x - this.w * 0.5, this.position.y - this.h*5, 200, 200);
-    text(this.value.toFixed(1) + this.unity, this.position.x, this.position.y + this.h*4, 200, 200);
+    text(this.value.toFixed(1) + this.unity, this.position.x - this.w * 0.5, this.position.y + this.h*4, 200, 200);
 
     if (this.cases){
         for (var i = 0; i < this.cases.length; i++){
             if (this.value >= this.cases[i][1] && this.value <= this.cases[i][2]){
                 fill(255,255,255);
-                text(this.cases[i][0],this.position.x, this.position.y + this.h*7, 200, 200 );
+                text(this.cases[i][0],this.position.x- this.w * 0.5, this.position.y + this.h*7, 200, 200 );
             }
         }
     }
@@ -65,12 +65,15 @@ Slider.prototype.update = function()
 }
 
 
-//criando sliders
+//criando sliders -----------------
 var slider = new Slider("Força Aplicada", ' N', 0,100,"ball2.apllied_force.x",1180,80,100,5); //modifica força aplicada
 var sliderm = new Slider("Massa", ' Kg', 1,100,"ball2.mass",1180,160,100,5); // Digamos que está em Kg
+
 var sliderg = new Slider("Gravidade", ' m/s²', 0, 24.8, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
 sliderg.defineCases([ ['Espaço', 0, 0], ['Terra', 9.8, 10], ["Marte ou Mércurio", 3.7, 4], ["Urano e Vênus", 8.8, 9], ["Saturno", 10.4, 10.1], ["Netuno", 11, 11.2], ["Júpiter", 24.5, 24.8] ]);
 
+var sliderc = new Slider('Coeficiente de Atrito', '', 0, 1, "ball2.cStaticFriction", 1180, 320, 100, 5);
+sliderc.defineCases( [  ['Borracha sobre concreto', 1, 1], ['Aço sobre aço (seco)', 0.8, 0.8], ['Aço sobre aco(lubrificado)', 0.1, 0.1], ['Madeira sobre madeira', 0.5, 0.5], ['Madeira sobre neve', 0.12, 0.12] ]  );
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
 //Configurações iniciais do canvas
@@ -86,22 +89,27 @@ void draw ()
     background(064,224,208); //Para que a animação funcione.
     noStroke(); //para os desenhos terem ua linha preta ao redor.
     fill(150,150,150);//cor do quadrado
-    rect(1180,160,200,320);//quadrado de fundo dos slides
+    rectMode(CORNER);
+    rect(1100,0,200,400);//quadrado de fundo dos slides
 
     //Timer do tempo
     time = (Date.now() - start)/1000;
-    textSize(30);
+    textSize(25);
     fill(255,255,255);
-    text(time + ' segundos', 200, 200, 1000, 1000);
-    text(ball2.percorrido.toFixed(2) + ' m ', 200, 400, 1000, 1000);
-    text(ball2.velocity.mag().toFixed(2) + ' m/s', 200, 100, 1000, 1000);
-    text(ball2.acceleration.mag().toFixed(2) + ' m/s² ', 600, 200, 1000, 1000);
+    text('t = ' + time + ' s', 10, 50, 1000, 1000);
+
+    // Outras informações que aparecem para o usuário
+    text('s = ' + ball2.percorrido.toFixed(2) + ' m ', 210, 50, 1000, 1000);
+    text('v = ' + ball2.velocity.mag().toFixed(2) + ' m/s', 410, 50, 1000, 1000);
+    text('a = ' + ball2.acceleration.mag().toFixed(2) + ' m/s² ', 610 , 50, 1000, 1000);
+
     //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
     slider.update();
     slider.draw();
     sliderm.update();
     sliderm.draw();
-
+    sliderc.update();
+    sliderc.draw();
 
     // Dando update nos obejetos físicos
     ball2.update();
