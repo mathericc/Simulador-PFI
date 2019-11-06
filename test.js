@@ -55,10 +55,10 @@ Slider.prototype.update = function()
 
 
 //criando sliders
-var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",1180,70,100,5); //modifica força aplicada
-var sliderm = new Slider("Massa", 1,100,"ball2.mass",1180,140,100,5); // Digamos que está em Kg
+var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",1180,80,100,5); //modifica força aplicada
+var sliderm = new Slider("Massa", 1,100,"ball2.mass",1180,160,100,5); // Digamos que está em Kg
 
-var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,210,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
+var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
 
 
 // Relacionado ao canvas e ao desenho ------------------------------------------
