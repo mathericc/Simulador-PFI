@@ -67,13 +67,13 @@ var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",1180,240,100,5); /
 void setup ()
 {
     size(1280,720);
-    background(030,144,255);
+    background(127,255,212);
 }
 
 void draw ()
 {
 
-    background(030,144,255); //Para que a animação funcione.
+    background(127,255,212); //Para que a animação funcione.
     stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
 
 
