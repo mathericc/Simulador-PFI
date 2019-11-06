@@ -73,7 +73,7 @@ void setup ()
 void draw ()
 {
 
-    background(100, 100, 100); //Para que a animação funcione.
+    background(030,144,255); //Para que a animação funcione.
     stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
 
 
