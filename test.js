@@ -72,7 +72,8 @@ void setup ()
 
 void draw ()
 {
-
+    fill(100,100,100)//cor do quadrado
+    rect(1200,190,140,280)//quadrado de fundo dos slides
     background(064,224,208); //Para que a animação funcione.
     stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
 
@@ -105,8 +106,6 @@ void draw ()
 
 
     // Questões relacionadas ao desenho do quadrado (Isto deve ser mudado par um método do Physical)
-    fill(100,100,100)
-    rect(1200,190,140,280)
     fill(0,255,100);
     rectMode(CORNER);
     rect(0,575,1280,720);
