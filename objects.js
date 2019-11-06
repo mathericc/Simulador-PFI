@@ -29,6 +29,8 @@ var Physical = function(x=200, y=200, w=10, h=10, mass=1, density=1)
     //Peso e normal (Porém são só valores não estão relacionados a gravidade )
     this.weight = new PVector(0,0);
     this.normal = new PVector(0,0);
+
+    this.distance = 0; //para marcar a distância percorrida pelo objeto em metros
 }
 
 //Métodos da classe Physical
@@ -110,4 +112,11 @@ var Slider = function(name,min, max, variavel,x=200, y=200, w=10, h=10)
     this.value = this.max/2; // value é o valor dentro dos limites
     this.real_value = 0; // real_value é o valor em  relação ao tamanho do slider
 
+    // Armazena os casos os valores que devem mostrar algo e o que devem mostrar
+    this.cases = [];
+}
+
+Slider.prototype.defineCases = function(cases){
+    //recebe uma array contendo arrays, as quais contém nesta ordem : o que deve ser printado e em qual valor.
+    this.cases= cases;
 }

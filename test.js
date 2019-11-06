@@ -1,4 +1,4 @@
-
+var start = Date.now();
 //definição de forças
 
 var gravity = new PVector(0, 0);
@@ -19,6 +19,15 @@ Slider.prototype.draw = function()
     fill(255,255,255);
     text(this.name, this.position.x - this.w * 0.5, this.position.y - this.h*5, 200, 200);
     text(this.value, this.position.x, this.position.y + this.h*4, 200, 200);
+
+    if (this.cases){
+        for (var i = 0; i < this.cases.length; i++){
+            if (this.value == this.cases[i][1] ){
+                fill(0,0,0);
+                text(this.cases[i][0],this.position.x, this.position.y + this.h*6, 200, 200 );
+            }
+        }
+    }
 }
 
 //vericar se mouse está no slide e mudar valores conforme a posição do slide (Talvez possa ser melhorado)
@@ -59,7 +68,7 @@ var slider = new Slider("Força Aplicada", 0,100,"ball2.apllied_force.x",400,200
 var sliderm = new Slider("Massa", 1,100,"ball2.mass",600,200,100,5); // Digamos que está em Kg
 
 var sliderg = new Slider("Gravidade", 3.7, 24.79, "gravity.y",800,200,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
-
+sliderg.defineCases([['Terra', 9.8], ["Marte ou Mércurio", 3.7], ['Terra', 9.8]]);
 
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
@@ -72,11 +81,12 @@ void setup ()
 
 void draw ()
 {
+    time = (Date.now() - start)/1000;
 
     background(100, 100, 100); //Para que a animação funcione.
-    stroke(0,0,0); //para os desenhos terem ua linha preta ao redor.
+    stroke(0,0,0); //para os desenhos terem uma linha preta ao redor.
 
-
+    text(time + 'segundos', 200, 200, 200, 200);
     //Desenhando e dando uptade nos slides( é necessário uma função para fazer isso de forma otimizada)
     slider.update();
     slider.draw();
