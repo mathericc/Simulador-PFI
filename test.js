@@ -27,7 +27,7 @@ Slider.prototype.draw = function()
         for (var i = 0; i < this.cases.length; i++){
             if (this.value >= this.cases[i][1] && this.value <= this.cases[i][2]){
                 fill(255,255,255);
-                text(this.cases[i][0],this.position.x, this.position.y + this.h*6, 200, 200 );
+                text(this.cases[i][0],this.position.x, this.position.y + this.h*7, 200, 200 );
             }
         }
     }
@@ -68,8 +68,8 @@ Slider.prototype.update = function()
 //criando sliders
 var slider = new Slider("Força Aplicada", ' N', 0,100,"ball2.apllied_force.x",1180,80,100,5); //modifica força aplicada
 var sliderm = new Slider("Massa", ' Kg', 1,100,"ball2.mass",1180,160,100,5); // Digamos que está em Kg
-var sliderg = new Slider("Gravidade", ' m/s²', 3.7, 24.79, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
-sliderg.defineCases([ ['Terra', 9.8, 10], ["Marte ou Mércurio", 3.7, 4] ]);
+var sliderg = new Slider("Gravidade", ' m/s²', 0, 24.8, "gravity.y",1180,240,100,5); // modifica a gravidade variando da gravidade de mércurio até jupíter
+sliderg.defineCases([ ['Espaço', 0, 0], ['Terra', 9.8, 10], ["Marte ou Mércurio", 3.7, 4], ["Urano e Vênus", 8.8, 9], ["Saturno", 10.4, 10.1], ["Netuno", 11, 11.2], ["Júpiter", 24.5, 24.8] ]);
 
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
