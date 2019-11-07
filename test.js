@@ -20,7 +20,7 @@ Physical.prototype.drawvector = function (vectors)
 {
     for (var i = 0; i < vectors.length; i++ ){
         if (vectors[i].mag() != 0){
-            var c = 0.5;
+            var c = 1.2;
             strokeWeight(3);
             stroke(40, 100, 100);
             line(this.position.x, this.position.y, this.position.x + vectors[i].x *c, this.position.y + vectors[i].y*c);
