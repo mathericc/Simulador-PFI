@@ -1,3 +1,9 @@
+//Variaveis do plano inclinado
+var plane = {
+    a: new PVector(0,575),
+    b: new PVector(400 ,300),
+    c: new PVector(800, 575),
+};
 
 //Inicio do Timer do tempo
 var start = Date.now();
@@ -7,6 +13,30 @@ var gravity = new PVector(0, 0);
 
 //criando obejto bola para testes
 var ball2 = new Physical(0,550,50,50);
+
+//Métodos de desenho do Physical
+
+Physical.prototype.drawvector = function (vectors)
+{
+    for (var i = 0; i < vectors.length; i++ ){
+        if (vectors[i].mag() != 0){
+            var c = 0.5;
+            strokeWeight(3);
+            stroke(40, 100, 100);
+            line(this.position.x, this.position.y, this.position.x + vectors[i].x *c, this.position.y + vectors[i].y*c);
+            pushMatrix();
+            translate(this.position.x + vectors[i].x *c, this.position.y + vectors[i].y*c);
+            a = atan2(this.position.x-(this.position.x + vectors[i].x*c), (this.position.y + vectors[i].y*c)-this.position.y);
+            rotate(a);
+            line(0, 0, -10, -10);
+            line(0, 0, 10, -10);
+            popMatrix();
+        }
+    }
+
+
+
+}
 
 //Métodos do slider de desenho do slider --------------------------------------------------------------
 
@@ -74,6 +104,8 @@ sliderg.defineCases([ ['Espaço', 0, 0], ['Terra', 9.8, 10], ["Marte ou Mércuri
 
 var sliderc = new Slider('Coeficiente de Atrito', '', 0, 1, "ball2.cStaticFriction", 1180, 320, 100, 5);
 sliderc.defineCases( [  ['Borracha sobre concreto', 1, 1], ['Aço sobre aço (seco)', 0.8, 0.8], ['Aço sobre aco(lubrificado)', 0.1, 0.1], ['Madeira sobre madeira', 0.5, 0.5], ['Madeira sobre neve', 0.12, 0.12] ]  );
+
+// var sliderp = new Slider('Angulo do plano', '', 0, 720, "plane.b.x", 200, 320, 100, 5);
 // Relacionado ao canvas e ao desenho ------------------------------------------
 
 //Configurações iniciais do canvas
@@ -91,6 +123,10 @@ void draw ()
     fill(150,150,150);//cor do quadrado
     rectMode(CORNER);
     rect(1100,0,200,400);//quadrado de fundo dos slides
+
+    fill(200, 200, 100);
+    triangle(plane.a.x, plane.a.y , plane.b.x, plane.b.y , plane.c.x, plane.c.y);
+    // text( degrees(PVector.angleBetween(plane.c, plane.b)) ,200, 200, 200, 200);
 
     //Timer do tempo
     time = (Date.now() - start)/1000;
@@ -110,9 +146,14 @@ void draw ()
     sliderm.draw();
     sliderc.update();
     sliderc.draw();
+    // sliderp.update();
+    // sliderp.draw();
+
+
 
     // Dando update nos obejetos físicos
     ball2.update();
+
 
 
     //Aplicando a gravidade
@@ -138,6 +179,8 @@ void draw ()
     fill(240,128,128);
     rectMode(CENTER);
     rect(ball2.position.x, ball2.position.y, ball2.w, ball2.h);
+
+    ball2.drawvector([ball2.velocity, ball2.weight, ball2.friction, ball2.normal]);
 
 
     // Para que o objeto ball2 quando sair da tela volte do outro lado. (Talvez possa ser mudado)
